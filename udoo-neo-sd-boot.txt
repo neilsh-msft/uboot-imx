@@ -1,0 +1,18 @@
+#
+# This is a boot script to load a file named imx6board_efi.fd
+# from the first SD mass storage device and then jump
+# to it. It must be compiled to an SCR file and placed at
+# the root of the SD card for u-boot to pick it up.
+#
+#  Compile this script to a format u-boot understands:
+#
+#   mkimage -C none -A arm -T script -d udoo-neo-sd-boot.txt boot.scr
+#
+#  Copy boot.scr to the root of the SD card.
+#
+#
+# mkimage can be found at the root of the u-boot tree after
+# doing a build of u-boot.
+#
+
+setenv uefi_addr 0x80820000; setenv uefi_image_name imx6board_efi.fd; mmc rescan; fatload mmc 0:1 ${uefi_addr} ${uefi_image_name}; go ${uefi_addr};

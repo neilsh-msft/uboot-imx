@@ -115,7 +115,7 @@
 
 #undef CONFIG_CMD_IMLS
 
-#define CONFIG_BOOTDELAY		3
+#define CONFIG_BOOTDELAY		0
 
 #define CONFIG_LOADADDR			0x80800000
 #define CONFIG_SYS_TEXT_BASE		0x87800000
@@ -164,7 +164,7 @@
 	CONFIG_MFG_ENV_SETTINGS \
 	M4_STARTUP_ENV \
 	CONFIG_VIDEO_MODE \
-	"script=uEnv.txt\0" \
+	"script=boot.scr\0" \
 	"image=/zImage\0" \
 	"console=ttymxc0\0" \
 	"fdt_high=0xffffffff\0" \
@@ -183,7 +183,7 @@
 	"loadbootscript=" \
 		"fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${script};\0" \
 	"bootscript=echo Running bootscript from mmc ...; " \
-		"env import -t ${loadaddr} ${filesize};\0" \
+		"source\0" \
 	"loadimage=fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${image}\0" \
 	"loadfdt=fatload mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${fdt_file}\0" \
 	"mmcboot=echo Booting from mmc ...; " \
